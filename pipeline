@@ -1,0 +1,38 @@
+pipeline {
+    agent any
+    
+    environment {
+        name='flask'
+        userid='516337401638'
+        region='eu-central-1'
+        access_key_id = credentials('access_key_id')
+        secret_access_key = credentials('secret_access_key')
+        cluster='flask-up'
+        url='https://github.com/tomcoh5/docker-flask.git'
+    }
+
+    stages {
+        stage('Building Image') {
+            steps {
+                echo 'Building.....'
+                sh '/var/jenkins_home/pipeline-for-pushing-to-ecr/build.sh'
+            }
+        }
+        stage("Uploading To Ecr") {
+            steps {
+                echo 'Upload....'
+                sh '/var/jenkins_home/pipeline-for-pushing-to-ecr/configure.sh'
+                sh '/var/jenkins_home/pipeline-for-pushing-to-ecr/login.sh'
+            }    
+        }
+        stage("Deploying in Ecs"){
+            steps {
+                echo 'deploying into ecs'
+                sh '/var/jenkins_home/pipeline-for-pushing-to-ecr/ecs.sh'
+                echo 'please wait untill containers are up '
+                sh 'sleep 120'
+                sh '/var/jenkins_home/pipeline-for-pushing-to-ecr/deploy.sh'
+            }
+        }
+    }   
+}
