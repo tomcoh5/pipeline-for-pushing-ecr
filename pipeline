@@ -9,6 +9,8 @@ pipeline {
         secret_access_key = credentials('secret_access_key')
         cluster='flask-up'
         url='https://github.com/tomcoh5/docker-flask.git'
+        keypair='elasticsearch'
+        numberofinstance='2'
     }
 
     stages {
