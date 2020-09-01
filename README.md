@@ -1,6 +1,6 @@
 # pipeline-for-pushing-to-ecr
 ## NOTES
-1.make sure to have your aws access key and aws secret access key
+1.make sure to have your aws access key and aws secret access key \n
 2ץenter the url for your repo
 3.you can edit "deploy.sh" to scale more containers
 4.you can edit "ecs.sh" to change instance type 
