@@ -1,7 +1,10 @@
 # pipeline-for-pushing-to-ecr
 ## NOTES
-make sure to have your aws access key and aws secret access key
-enter the url for your repo
+1.make sure to have your aws access key and aws secret access key
+2ץenter the url for your repo
+3.you can edit "deploy.sh" to scale more containers
+4.you can edit "ecs.sh" to change instance type 
+5. make sure you have aws cli installed and ecs cli (dont configure them the pipeline will do it for you)
 ## Installation
 1. first step is installing docker by:
 ```bash
