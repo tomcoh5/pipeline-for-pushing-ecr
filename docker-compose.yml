@@ -1,0 +1,12 @@
+version: '3'
+services:
+        web:
+                image: ${image_name}
+                ports:
+                        - "5000:5000"
+                logging: 
+                  driver: awslogs
+                  options:
+                          awslogs-group: flask2
+                          awslogs-region: eu-central-1
+                          awslogs-stream-prefix: web
